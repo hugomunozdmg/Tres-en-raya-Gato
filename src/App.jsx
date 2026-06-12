@@ -14,13 +14,14 @@ function App() {
     let valuesToChange = [...values];
     valuesToChange[x][y] = turno;
     setValues(valuesToChange);
-    checkWinner();
+    if(checkWinner()) setWinner(turno)
+
   }
 
   function checkWinner() {
     if (turno == "X") setTurno("O");
     if (turno == "O") setTurno("X");
-    setWinner(
+    return (
         (values[0][0] != " " && values[0][0] == values[0][1] && values[0][0] == values[0][2]) ||
         (values[1][0] != " " && values[1][0] == values[1][1] && values[1][0] == values[1][2]) ||
         (values[2][0] != " " && values[2][0] == values[2][1] && values[2][0] == values[2][2]) ||
@@ -32,7 +33,7 @@ function App() {
 
   return (
     <div className="App">
-      <p>{winner ? `el ganador es ${turno}` : ""}</p>
+      <p>{winner ? `el ganador es ${winner}` : ""}</p>
       <div>
         <button
           onClick={() => {
